@@ -1,0 +1,26 @@
+# ─── Pet House root .htaccess ───────────────────────────────────────
+# Protects sensitive files, disables directory listing, enforces UTF-8.
+
+Options -Indexes
+AddDefaultCharset UTF-8
+ServerSignature Off
+
+# Deny direct access to config / database / includes / sql
+<FilesMatch "^(config\.php|database\.sql|\.env)$">
+    Require all denied
+</FilesMatch>
+
+# Block dotfiles (.git, .htaccess itself is allowed, .DS_Store, etc.)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Protect the config and includes folders from direct browser access
+RewriteEngine On
+RewriteRule ^config/   - [F,L]
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^database/ - [F,L]
+
+# Optional: pretty-error page (uncomment in production)
+# ErrorDocument 403 /php-pethouse/index.php
+# ErrorDocument 404 /php-pethouse/index.php

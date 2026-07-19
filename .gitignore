@@ -1,0 +1,27 @@
+# IDE & Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Environment & local config
+config/config.custom.php
+
+# Android build outputs & IDE
+android_app/.gradle/
+android_app/app/build/
+android_app/build/
+android_app/.idea/
+android_app/local.properties
+android_app/*.iml
+android_app/app/*.iml
+
+# System & temporary logs
+*.log
+
+# Uploaded assets (keep structure files)
+assets/uploads/*
+!assets/uploads/.htaccess
+!assets/uploads/index.html

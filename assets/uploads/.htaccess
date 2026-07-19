@@ -1,0 +1,20 @@
+# Deny execution of any server-side script in the uploads folder.
+# This prevents a maliciously-renamed .php (or .phtml / .phar / .shtml)
+# uploaded via a form from being executed by Apache/PHP.
+
+<FilesMatch "\.(php|phtml|phar|phps|php3|php4|php5|php7|pht|shtml|cgi|pl|py|sh|asp|aspx|jsp)$">
+    Require all denied
+</FilesMatch>
+
+# Disable script execution via mod_php / PHP-FPM directly
+php_flag engine off
+AddType text/plain .php .phtml .phar .phps .php3 .php4 .php5 .php7 .pht
+
+# Prevent directory listing
+Options -Indexes
+
+# Force known image/PDF types to be served as static assets (not interpreted)
+<IfModule mod_mime.c>
+    RemoveHandler .php .phtml .phar .php3 .php4 .php5 .php7
+    RemoveType    .php .phtml .phar .php3 .php4 .php5 .php7
+</IfModule>
