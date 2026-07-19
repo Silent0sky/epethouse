@@ -39,7 +39,7 @@ $services = db_select(
 
 // ─── Featured products (top 4) ─────────────────────────────────────
 $products = db_select(
-    'SELECT id, name, price, original_price, rating, review_count, category, in_stock, stock_qty
+    'SELECT id, name, price, original_price, rating, review_count, category, in_stock, stock_qty, image
        FROM products
       WHERE featured = 1 AND in_stock = 1
       ORDER BY rating DESC
@@ -203,8 +203,12 @@ $dailyTip = $tips[$tipIndex];
             ?>
                 <div class="col-sm-6 col-lg-3">
                     <div class="card product-card h-100">
-                        <div class="product-thumb position-relative">
-                            <i class="fas fa-paw"></i>
+                        <div class="product-thumb position-relative overflow-hidden">
+                            <?php if (!empty($p['image']) && file_exists(UPLOAD_DIR . 'products/' . $p['image'])): ?>
+                                <img src="<?= UPLOAD_URL ?>products/<?= e($p['image']) ?>" alt="<?= e($p['name']) ?>" class="w-100 h-100 object-fit-cover">
+                            <?php else: ?>
+                                <i class="fas fa-paw"></i>
+                            <?php endif; ?>
                             <span class="badge bg-grad-amber position-absolute top-0 start-0 m-2">Featured</span>
                             <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-2 rounded-circle"
                                     data-wishlist-toggle="<?= e($p['id']) ?>"

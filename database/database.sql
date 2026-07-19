@@ -473,16 +473,35 @@ INSERT INTO `boarding_rooms` (`id`,`name`,`type`,`price`,`capacity`,`amenities`,
 ON DUPLICATE KEY UPDATE `name` = VALUES(`name`), `price` = VALUES(`price`);
 
 -- 2.4 PARENT TABLE 4: PRODUCTS
-INSERT INTO `products` (`id`,`name`,`description`,`price`,`original_price`,`category`,`rating`,`review_count`,`in_stock`,`stock_qty`,`featured`,`tags`) VALUES
-('pr_1','Premium Dog Food 5kg','High-protein adult dog food with real chicken and vegetables. Supports healthy coat and digestion.',1299.00,1599.00,'food',4.7,128,1,40,1,'["dog","food","premium"]'),
-('pr_2','Squeaky Chew Toy','Durable rubber chew toy with squeaker. Keeps dogs entertained and promotes dental health.',249.00,NULL,'toys',4.5,64,1,120,0,'["dog","toy"]'),
-('pr_3','Cat Litter 10L','Clumping cat litter with odor control. Long lasting and dust free.',449.00,549.00,'food',4.3,52,1,30,0,'["cat","litter"]'),
-('pr_4','Stainless Steel Bowl','Non-slip stainless steel food bowl. Dishwasher safe and rust resistant.',199.00,NULL,'accessories',4.8,210,1,200,1,'["dog","cat","bowl"]'),
-('pr_5','Leather Dog Leash','Genuine leather leash with padded handle. 5ft length, suitable for all breeds.',599.00,799.00,'accessories',4.6,89,1,55,1,'["dog","leash"]'),
-('pr_6','Aquarium Fish Food 200g','Balanced nutrition flakes for tropical fish. Enhances color and vitality.',179.00,NULL,'food',4.4,37,1,80,0,'["fish","food"]'),
-('pr_7','Pet Shampoo 500ml','Oatmeal and aloe vera shampoo for sensitive skin. pH balanced and tear free.',349.00,449.00,'grooming',4.7,143,1,65,1,'["dog","cat","shampoo"]'),
-('pr_8','Cat scratching post','Multi-level scratching post with dangling toy. Saves your furniture!',899.00,NULL,'toys',4.5,41,1,25,0,'["cat","toy"]')
-ON DUPLICATE KEY UPDATE `name` = VALUES(`name`), `price` = VALUES(`price`);
+INSERT INTO `products` (`id`,`name`,`description`,`price`,`original_price`,`category`,`image`,`rating`,`review_count`,`in_stock`,`stock_qty`,`featured`,`tags`) VALUES
+-- CAT FOOD (5 Products)
+('pr_cf_1','Royal Canin Fit 32 Adult Cat Food (1.2kg)','Balanced and complete feed for adult cats over 1 year old. Supports ideal weight and hairball reduction.',899.00,1099.00,'food','cat_food_royal_canin.png',4.8,142,1,45,1,'["cat","food","dry"]'),
+('pr_cf_2','Whiskas Ocean Fish Dry Cat Food (3kg)','Delicious ocean fish flavor dry cat food packed with essential nutrients, omega-6 and zinc for shiny coat.',799.00,899.00,'food','cat_food_whiskas.png',4.6,98,1,60,1,'["cat","food","oceanfish"]'),
+('pr_cf_3','Sheba Premium Wet Cat Food Gravy (12x70g)','Gourmet wet cat food loaf in rich succulent gravy. Made with real fish and chicken morsels.',649.00,749.00,'food','cat_food_sheba.png',4.7,75,1,30,0,'["cat","food","wet"]'),
+('pr_cf_4','Purina Friskies Seafood Sensations (1.1kg)','Tempting mix of ocean whitefish, salmon, tuna and crab flavors with garden greens for cats.',499.00,599.00,'food','cat_food_friskies.png',4.5,54,1,50,0,'["cat","food","seafood"]'),
+('pr_cf_5','Me-O Kitten Salmon & Tuna Food (1.1kg)','Specially formulated dry food for growing kittens with DHA, milk powder and essential vitamins.',389.00,449.00,'food','cat_food_meo.png',4.6,61,1,40,0,'["cat","kitten","food"]'),
+
+-- DOG FOOD (5 Products)
+('pr_df_1','Pedigree Chicken & Vegetable Adult Dog Food (3kg)','Complete and balanced nutrition for adult dogs with real chicken, rice, and healthy digestive fibers.',699.00,799.00,'food','dog_food_pedigree.png',4.7,210,1,80,1,'["dog","food","chicken"]'),
+('pr_df_2','Royal Canin Maxi Adult Dry Dog Food (4kg)','Tailored nutrition for large breed adult dogs (26 to 44 kg). Supports high joint health and bone strength.',2199.00,2499.00,'food','dog_food_royal_canin.png',4.9,115,1,25,1,'["dog","food","maxi"]'),
+('pr_df_3','Drools Focus Superpremium Adult Dog Food (3kg)','Real chicken formula with zero corn, soy or wheat. Enhanced with DHA and omega fatty acids.',1149.00,1299.00,'food','dog_food_drools.png',4.6,88,1,35,0,'["dog","food","superpremium"]'),
+('pr_df_4','Meat Up Puppy Chicken & Rice Dry Food (3kg)','Nutritious puppy food formulated with high quality protein for muscle growth and immunity boosting.',599.00,699.00,'food','dog_food_meatup.png',4.4,49,1,65,0,'["dog","puppy","food"]'),
+('pr_df_5','Purepet Adult Chicken & Rice Dog Food (10kg)','Economy bulk pack dry dog food providing balanced daily meal requirements for active adult dogs.',1499.00,1799.00,'food','dog_food_purepet.png',4.5,130,1,40,0,'["dog","food","economy"]'),
+
+-- BELT / COLLARS & LEASHES (5 Products)
+('pr_bl_1','Padded Heavy-Duty Nylon Dog Harness & Leash','No-pull breathable mesh dog harness with reflective stitching and padded handle leash for safe walks.',549.00,699.00,'accessories','belt_nylon_harness.png',4.8,92,1,55,1,'["dog","harness","leash","belt"]'),
+('pr_bl_2','Genuine Leather Dog Collar with Brass Buckle','Handcrafted 100% genuine leather collar with rust-proof solid brass hardware and comfortable padding.',499.00,649.00,'accessories','belt_leather_collar.png',4.7,84,1,45,1,'["dog","collar","leather","belt"]'),
+('pr_bl_3','Night Reflective Adjustable Dog Collar & Leash Combo','High visibility 3M reflective nylon collar and matching 5ft leash set for safe night walking.',399.00,499.00,'accessories','belt_reflective_combo.png',4.6,67,1,70,0,'["dog","reflective","collar","belt"]'),
+('pr_bl_4','Velvet Cat Collar with Safety Bell & Bowtie','Soft velvet breakaway safety cat collar with quick release buckle, golden bell, and cute detachable bowtie.',249.00,329.00,'accessories','belt_cat_bowtie_collar.png',4.7,105,1,85,0,'["cat","collar","bell","belt"]'),
+('pr_bl_5','5 Meter Automatic Retractable Dog Leash Belt','One-button lock and release heavy-duty tangle-free ribbon leash for dogs up to 25kg.',799.00,999.00,'accessories','belt_retractable_leash.png',4.5,78,1,30,0,'["dog","leash","retractable","belt"]'),
+
+-- TOYS (5 Products)
+('pr_ty_1','Squeaky Durable Rubber Chew Bone Toy for Dogs','Non-toxic natural rubber bone with squeaker. Cleans teeth, massages gums, and reduces destructive chewing.',249.00,349.00,'toys','toy_squeaky_bone.png',4.6,140,1,100,1,'["dog","toy","chew"]'),
+('pr_ty_2','Interactive Cat Feather Wand Teaser Toy with Bell','Flexible 36-inch wand with natural feathers and jingle bell to stimulate your cat hunting instincts.',199.00,299.00,'toys','toy_cat_feather_wand.png',4.8,112,1,120,0,'["cat","toy","teaser"]'),
+('pr_ty_3','Heavy Duty Cotton Rope Knot Tug Toy for Dogs','100% natural washable cotton rope toy with 3 durable knots for tug of war and dental flossing.',299.00,399.00,'toys','toy_rope_tug.png',4.7,95,1,90,0,'["dog","toy","rope"]'),
+('pr_ty_4','Catnip Filled Plush Mice Toy Set (Pack of 3)','Soft plush mice toys stuffed with organic catnip. Perfect for swatting, chasing and solo play.',229.00,299.00,'toys','toy_catnip_mice.png',4.5,82,1,110,0,'["cat","toy","catnip"]'),
+('pr_ty_5','Treat Dispensing IQ Puzzle Ball Toy for Pets','Interactive slow feeder puzzle ball that dispenses dry kibble or treats as your pet rolls it.',449.00,599.00,'toys','toy_treat_puzzle_ball.png',4.7,68,1,40,1,'["dog","cat","toy","puzzle"]')
+ON DUPLICATE KEY UPDATE `name` = VALUES(`name`), `price` = VALUES(`price`), `image` = VALUES(`image`);
 
 -- 2.5 INDEPENDENT REFERENCE DATA
 INSERT INTO `coupons` (`id`,`code`,`discount`,`type`,`min_order`,`max_discount`,`active`,`usage_limit`,`usage_count`) VALUES

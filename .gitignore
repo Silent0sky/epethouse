@@ -21,7 +21,9 @@ android_app/app/*.iml
 # System & temporary logs
 *.log
 
-# Uploaded assets (keep structure files)
+# Uploaded assets (keep structure files & seeded product images)
 assets/uploads/*
 !assets/uploads/.htaccess
 !assets/uploads/index.html
+!assets/uploads/products/
+!assets/uploads/products/*

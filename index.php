@@ -94,7 +94,13 @@ include __DIR__ . '/includes/header.php';
         <?php foreach ($products as $p): ?>
         <div class="col-md-3 col-sm-6">
             <div class="card product-card h-100">
-                <div class="product-thumb"><i class="fas fa-paw"></i></div>
+                <div class="product-thumb position-relative overflow-hidden">
+                    <?php if (!empty($p['image']) && file_exists(UPLOAD_DIR . 'products/' . $p['image'])): ?>
+                        <img src="<?= UPLOAD_URL ?>products/<?= e($p['image']) ?>" alt="<?= e($p['name']) ?>" class="w-100 h-100 object-fit-cover">
+                    <?php else: ?>
+                        <i class="fas fa-paw"></i>
+                    <?php endif; ?>
+                </div>
                 <div class="card-body d-flex flex-column">
                     <span class="badge bg-light text-dark align-self-start mb-2 text-uppercase"><?= e($p['category']) ?></span>
                     <h6 class="card-title"><?= e($p['name']) ?></h6>

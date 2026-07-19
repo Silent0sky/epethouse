@@ -42,7 +42,7 @@ $order = match ($sort) {
 // ─── Paginate ───────────────────────────────────────────────────────
 $countSql = 'SELECT COUNT(*) FROM products ' . $where;
 $dataSql  = 'SELECT id, name, description, price, original_price, category, rating,
-                    review_count, in_stock, stock_qty, featured
+                    review_count, in_stock, stock_qty, featured, image
                FROM products ' . $where . ' ORDER BY ' . $order;
 
 $pg = paginate($countSql, $dataSql, $params, 12);
@@ -130,8 +130,12 @@ foreach (db_select('SELECT product_id FROM wishlist_items WHERE user_id = ?', [$
         ?>
         <div class="col-sm-6 col-lg-3">
             <div class="card product-card h-100">
-                <div class="product-thumb position-relative">
-                    <i class="fas fa-paw"></i>
+                <div class="product-thumb position-relative overflow-hidden">
+                    <?php if (!empty($p['image']) && file_exists(UPLOAD_DIR . 'products/' . $p['image'])): ?>
+                        <img src="<?= UPLOAD_URL ?>products/<?= e($p['image']) ?>" alt="<?= e($p['name']) ?>" class="w-100 h-100 object-fit-cover">
+                    <?php else: ?>
+                        <i class="fas fa-paw"></i>
+                    <?php endif; ?>
                     <?php if ((int)$p['featured'] === 1): ?>
                         <span class="badge bg-grad-amber position-absolute top-0 start-0 m-2">Featured</span>
                     <?php endif; ?>
